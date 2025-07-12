@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SuitMedia</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <style>
+      #gambar {
+        position: relative;
+      }
+
+      .miring {
+        width: 100%;
+        height: 450px;
+        background-color: white;
+        transform: skewY(-5deg);
+        transform-origin: top left;
+        margin-top: -300px;
+        position: relative;
+        z-index: 0;
+      }
+
+      .controls-container {
+        position: relative;
+        z-index: 1;
+        margin-top: -150px;
+        margin-bottom: 20px;
+      }
+
+      .card-img-top {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <nav
+        class="navbar navbar-expand-lg"
+        style="
+          background-color: rgb(31, 203, 212);
+          border-radius: 20px;
+          padding: 20px;
+          box-shadow: 0 10px 10px rgb(159, 180, 182);
+        "
+      >
+        <div class="container-fluid">
+          <a
+            class="navbar-brand"
+            href="#"
+            style="color: white; font-weight: 700; padding-left: 30px"
+          >
+            <span
+              style="
+                color: rgb(31, 203, 212);
+                background-color: white;
+                padding: 8px;
+                border-radius: 12px;
+                margin-right: 2px;
+              "
+              >RANDY</span
+            >FA
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav nav-tabs border-0 ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="#"
+                  style="color: white; font-weight: 700"
+                  >Work</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="#"
+                  style="color: white; font-weight: 700"
+                  >About</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="#"
+                  style="color: white; font-weight: 700"
+                  >Services</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="#"
+                  style="color: white; font-weight: 700"
+                  >Ideas</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="#"
+                  style="color: white; font-weight: 700"
+                  >Careers</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="#"
+                  style="color: white; font-weight: 700"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <br />
+
+      <section class="parallax">
+        <img
+          src="img/bg1.png"
+          alt=""
+          id="gambar"
+          style="width: 100%; border-radius: 20px"
+        />
+      </section>
+
+      <div class="miring"></div>
+
+      <div class="container controls-container" style="margin-top: -400px">
+        <div
+          class="d-flex flex-wrap justify-content-between align-items-center mb-3"
+        >
+          <div id="showingInfo">Showing 1 - 10 of 10</div>
+          <div class="d-flex gap-3 align-items-center">
+            <label
+              >Show per page:
+              <select id="perPage" class="form-select d-inline-block w-auto">
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+              </select>
+            </label>
+            <label
+              >Sort by:
+              <select id="sortBy" class="form-select d-inline-block w-auto">
+                <option value="newest" selected>Newest</option>
+                <option value="oldest">Oldest</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row" id="cardContainer"></div>
+      </div>
+
+      <br />
+    </div>
+
+    <script>
+      const cardData = [
+        {
+          img: "img/p1.png",
+          date: "2022-09-05",
+          title: "Kenali Tingkatan Influencer berdasarkan Jumlah Followers",
+        },
+        {
+          img: "img/p2.png",
+          date: "2022-08-20",
+          title: "Jangan Asal pilih Influencer berikut Cara Memilihnya",
+        },
+        {
+          img: "img/p1.png",
+          date: "2023-02-10",
+          title: "Strategi Influencer Marketing di 2023",
+        },
+        {
+          img: "img/p2.png",
+          date: "2021-12-01",
+          title: "Apa itu Nano dan Micro Influencer?",
+        },
+        {
+          img: "img/p2.png",
+          date: "2021-11-15",
+          title: "Tips Membuat Konten Menarik di Instagram",
+        },
+        {
+          img: "img/p2.png",
+          date: "2021-10-10",
+          title: "Mengenal Algoritma Instagram 2021",
+        },
+        {
+          img: "img/p2.png",
+          date: "2022-01-25",
+          title: "Content Planner untuk Influencer",
+        },
+        {
+          img: "img/p2.png",
+          date: "2023-03-03",
+          title: "Peran Influencer dalam Kampanye Sosial",
+        },
+      ];
+
+      const cardContainer = document.getElementById("cardContainer");
+      const sortSelect = document.getElementById("sortBy");
+      const perPageSelect = document.getElementById("perPage");
+      const showingInfo = document.getElementById("showingInfo");
+
+      function getState() {
+        const url = new URL(window.location);
+        return {
+          sort: url.searchParams.get("sort") || "newest",
+          perPage: parseInt(url.searchParams.get("perPage")) || 10,
+          page: parseInt(url.searchParams.get("page")) || 1,
+        };
+      }
+
+      function updateURL(sort, perPage, page) {
+        const url = new URL(window.location);
+        url.searchParams.set("sort", sort);
+        url.searchParams.set("perPage", perPage);
+        url.searchParams.set("page", page);
+        window.history.replaceState({}, "", url);
+      }
+
+      function formatDate(dateStr) {
+        const options = { day: "numeric", month: "long", year: "numeric" };
+        return new Date(dateStr).toLocaleDateString("id-ID", options);
+      }
+
+      function renderCards() {
+        const { sort, perPage, page } = getState();
+
+        sortSelect.value = sort;
+        perPageSelect.value = perPage;
+
+        let sorted = [...cardData];
+        if (sort === "newest") {
+          sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
+        } else {
+          sorted.sort((a, b) => new Date(a.date) - new Date(b.date));
+        }
+
+        const start = (page - 1) * perPage;
+        const end = start + perPage;
+        const paginatedItems = sorted.slice(start, end);
+
+        cardContainer.innerHTML = "";
+        paginatedItems.forEach((item) => {
+          const col = document.createElement("div");
+          col.className = "col-3 mb-4";
+          col.innerHTML = `
+            <div class="card" style="width: 18rem; box-shadow: 0 6px 10px rgb(216, 216, 216)">
+              <img src="${item.img}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <p class="card-text" style="color: gray">${formatDate(
+                  item.date
+                )}</p>
+                <h5 class="card-title" style="width: 200px; height: 100px">${
+                  item.title
+                }</h5>
+              </div>
+            </div>
+          `;
+          cardContainer.appendChild(col);
+        });
+
+        showingInfo.textContent = `Showing ${start + 1} - ${Math.min(
+          end,
+          cardData.length
+        )} of ${cardData.length}`;
+      }
+
+      sortSelect.addEventListener("change", () => {
+        updateURL(sortSelect.value, perPageSelect.value, 1);
+        renderCards();
+      });
+
+      perPageSelect.addEventListener("change", () => {
+        updateURL(sortSelect.value, perPageSelect.value, 1);
+        renderCards();
+      });
+
+      window.addEventListener("load", renderCards);
+    </script>
+
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
